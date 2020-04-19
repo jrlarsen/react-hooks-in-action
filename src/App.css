@@ -1,0 +1,25 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 80px;
+}
+
+.bookables {
+  margin: 1em 0;
+  padding: 0;
+  list-style: none;
+}
+.bookables > li {
+  margin: 0 0 1em;
+  padding: 1em;
+  border: 1px solid silver;
+}
+.selected {
+  background: #ddd;
+}
+.bookableDetails {
+  text-align:left;
+}
