@@ -1,5 +1,5 @@
 # React Hooks in Action
-Code for the Bookings App example from the book React Hooks in Action by John Larsen, published by Manning.
+Code for the Bookings App example from the book [React Hooks in Action](https://www.manning.com/books/react-hooks-in-action?a_aid=r51&a_bid=b49082e3&chan=gh) by John Larsen, published by Manning.
 
 ## Setup
 The app was created with create-react-app:
