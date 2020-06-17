@@ -1,25 +1,110 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-  margin: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 80px;
+:root {
+  --page-bg: #eee7be;
+  --primary: #173f5f;
+  --button-bg: #20639b;
+  --error: #ed553b;
+  --secondary: #3caea3;
+  --dark-text: #444;
+  --light-text: #fff;
 }
 
-.bookables {
-  margin: 1em 0;
-  padding: 0;
+body {
+  background: var(--page-bg);
+  margin: 0;
+  font-size: 16px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+header {
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary);
+}
+
+header ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.bookables > li {
-  margin: 0 0 1em;
-  padding: 1em;
-  border: 1px solid silver;
+
+header li {
+  display: inline-block;
+  margin: 0 1rem 0 0;
+  padding: 0;
 }
-.selected {
-  background: #ddd;
+
+header a.btn {
+  width: 9rem;
 }
-.bookableDetails {
-  text-align:left;
+
+.btn {
+  background: var(--button-bg);
+  color: var(--light-text);
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  margin-left:0.5rem;
+  font-size: 1rem;
+  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.btn:first-child {
+  margin-left: 0;
+}
+
+a.btn {
+  text-decoration: none;
+  background-color: var(--primary);
+}
+
+.btn-delete {
+  background: var(--error);
+  color: white;
+}
+
+.btn > svg:first-child {
+  margin-right: 0.4rem;
+}
+
+.btn > svg:last-child {
+  margin-left: 0.4rem;
+}
+
+.btn:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.btn-header {
+  background: var(--primary);
+  border: 1px solid var(--button-bg);
+}
+
+.btn-header:hover {
+  border-color: var(--light-text);
+}
+
+main {
+  margin: 40px auto;
+  display: grid;
+}
+
+.bookings-page {
+  grid-template-columns: 1fr 5fr;
+  grid-column-gap: 20px;
+  margin: 40px 20px;
+}
+
+.bookables-page,
+.users-page {
+  max-width: 70em;
+  grid-template-columns: 1fr 3fr;
+  grid-column-gap: 40px;
 }
