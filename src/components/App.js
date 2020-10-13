@@ -5,14 +5,15 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
 import "../App.css";
 
-import UserPicker from "./Users/UserPicker.js";
 import {FaCalendarAlt, FaDoorOpen, FaUsers} from "react-icons/fa";
 
 import BookablesPage from "./Bookables/BookablesPage";
 import BookingsPage from "./Bookings/BookingsPage";
 import UsersPage from "./Users/UsersPage";
+import UserPicker from "./Users/UserPicker.js";
 
 export default function App () {
   return (
