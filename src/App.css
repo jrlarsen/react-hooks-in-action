@@ -47,7 +47,7 @@ header a.btn {
   border: none;
   border-radius: 1.5rem;
   padding: 0.5rem 1.5rem;
-  margin-left:0.5rem;
+  margin-left: 0.5rem;
   font-size: 1rem;
   transition: all 0.4s ease;
   display: inline-flex;
@@ -56,6 +56,7 @@ header a.btn {
   cursor: pointer;
   box-sizing: border-box;
 }
+
 .btn:first-child {
   margin-left: 0;
 }
@@ -144,4 +145,51 @@ main {
 .items-list-nav .selected .btn {
   background: var(--primary);
   color: var(--light-text);
+}
+
+.item {
+  background: var(--secondary);
+  color: var(--light-text);
+  padding: 2rem;
+  text-align: left;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary);
+  border-bottom: 8px solid white;
+  margin: -2rem -2rem 1rem;
+  padding: 0 1rem;
+}
+
+.item-header .controls {
+  font-weight: normal;
+}
+
+.item h3 {
+  border-bottom: 1px solid white;
+  margin: 1em 0 0.5em;
+  padding-bottom: 3px;
+}
+
+.bookable-availability {
+  display: flex;
+  padding: 0 1em;
+}
+
+.bookable-availability ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 40%;
+}
+
+.bookable-availability li {
+  margin: 0.4em 0;
+}
+
+.item-details .bookable-availability ul {
+  list-style: square;
 }
