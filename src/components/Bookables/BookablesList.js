@@ -13,7 +13,7 @@ export default function BookablesList () {
     <ul className="bookables items-list-nav">
       {bookablesInGroup.map((b, i) => (
         <li
-          key={b.title}
+          key={b.id}
           className={i === bookableIndex ? "selected" : null}
         >
           <button
