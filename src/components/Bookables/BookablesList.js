@@ -3,9 +3,10 @@ import {bookables} from "../../static.json";
 import {FaArrowRight} from "react-icons/fa";
 
 export default function BookablesList () {
-  const group = "Rooms";
+  const [group, setGroup] = useState("Kit");
   const bookablesInGroup = bookables.filter(b => b.group === group);
-  const [bookableIndex, setBookableIndex] = useState(1);
+  const [bookableIndex, setBookableIndex] = useState(0);
+  const groups = [...new Set(bookables.map(b => b.group))];
 
   function nextBookable () {
     setBookableIndex(i => (i + 1) % bookablesInGroup.length);
@@ -13,6 +14,13 @@ export default function BookablesList () {
 
   return (
     <div>
+      <select
+        value={group}
+        onChange={(e) => setGroup(e.target.value)}
+      >
+        {groups.map(g => <option value={g} key={g}>{g}</option>)}
+      </select>
+
       <ul className="bookables items-list-nav">
         {bookablesInGroup.map((b, i) => (
           <li
