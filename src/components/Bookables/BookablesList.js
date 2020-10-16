@@ -1,5 +1,5 @@
 import React, {useReducer, useEffect, Fragment} from 'react';
-import {bookables, sessions, days} from "../../static.json";
+import {sessions, days} from "../../static.json";
 import {FaArrowRight} from "react-icons/fa";
 import Spinner from "../UI/Spinner";
 import reducer from "./reducer";
@@ -10,7 +10,7 @@ const initialState = {
   group: "Rooms",
   bookableIndex: 0,
   hasDetails: true,
-  bookables,
+  bookables: [],
   isLoading: true,
   error: false
 };
