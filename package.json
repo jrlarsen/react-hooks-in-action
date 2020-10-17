@@ -1,7 +1,7 @@
 {
   "name": "react-hooks-in-action",
   "description": "A bookings app example to accompany React Hooks in Action",
-  "version": "0.4.4",
+  "version": "0.5.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
