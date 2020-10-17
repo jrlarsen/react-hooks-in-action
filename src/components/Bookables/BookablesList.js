@@ -1,9 +1,8 @@
-import React, {useReducer, useEffect, Fragment} from 'react';
+import React, {useReducer, useEffect, useRef, Fragment} from 'react';
 import {sessions, days} from "../../static.json";
 import {FaArrowRight} from "react-icons/fa";
 import Spinner from "../UI/Spinner";
 import reducer from "./reducer";
-
 import getData from "../../utils/api";
 
 const initialState = {
@@ -25,23 +24,35 @@ export default function BookablesList () {
   const bookable = bookablesInGroup[bookableIndex];
   const groups = [...new Set(bookables.map(b => b.group))];
 
-  useEffect(() => {
+  const timerRef = useRef(null);
 
+  useEffect(() => {
     dispatch({type: "FETCH_BOOKABLES_REQUEST"});
 
     getData("http://localhost:3001/bookables")
-
       .then(bookables => dispatch({
         type: "FETCH_BOOKABLES_SUCCESS",
         payload: bookables
       }))
-
       .catch(error => dispatch({
         type: "FETCH_BOOKABLES_ERROR",
         payload: error
       }));
+  }, []);
+
+  useEffect(() => {
+
+    timerRef.current = setInterval(() => {
+      dispatch({type: "NEXT_BOOKABLE"});
+    }, 3000);
+
+    return stopPresentation;
 
   }, []);
+
+  function stopPresentation () {
+    clearInterval(timerRef.current);
+  }
 
   function changeGroup (e) {
     dispatch({
@@ -126,6 +137,12 @@ export default function BookablesList () {
                   />
                   Show Details
                 </label>
+                <button
+                  className="btn"
+                  onClick={stopPresentation}
+                >
+                  Stop
+                </button>
               </span>
             </div>
 
