@@ -1,27 +1,13 @@
-import React, {useReducer, useEffect, useRef, Fragment} from 'react';
-import {sessions, days} from "../../static.json";
+import React, {useEffect, useRef} from 'react';
 import {FaArrowRight} from "react-icons/fa";
 import Spinner from "../UI/Spinner";
-import reducer from "./reducer";
 import getData from "../../utils/api";
 
-const initialState = {
-  group: "Rooms",
-  bookableIndex: 0,
-  hasDetails: true,
-  bookables: [],
-  isLoading: true,
-  error: false
-};
-
-export default function BookablesList () {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
+export default function BookablesList ({state, dispatch}) {
   const {group, bookableIndex, bookables} = state;
-  const {hasDetails, isLoading, error} = state;
+  const {isLoading, error} = state;
 
   const bookablesInGroup = bookables.filter(b => b.group === group);
-  const bookable = bookablesInGroup[bookableIndex];
   const groups = [...new Set(bookables.map(b => b.group))];
 
   const nextButtonRef = useRef();
@@ -38,7 +24,7 @@ export default function BookablesList () {
         type: "FETCH_BOOKABLES_ERROR",
         payload: error
       }));
-  }, []);
+  }, [dispatch]);
 
   function changeGroup (e) {
     dispatch({
@@ -59,10 +45,6 @@ export default function BookablesList () {
     dispatch({type: "NEXT_BOOKABLE"});
   }
 
-  function toggleDetails () {
-    dispatch({type: "TOGGLE_HAS_DETAILS"});
-  }
-
   if (error) {
     return <p>{error.message}</p>
   }
@@ -72,85 +54,37 @@ export default function BookablesList () {
   }
 
   return (
-    <Fragment>
-      <div>
-        <select
-          value={group}
-          onChange={changeGroup}
-        >
-          {groups.map(g => <option value={g} key={g}>{g}</option>)}
-        </select>
+    <div>
+      <select value={group} onChange={changeGroup}>
+        {groups.map(g => <option value={g} key={g}>{g}</option>)}
+      </select>
 
-        <ul className="bookables items-list-nav">
-          {bookablesInGroup.map((b, i) => (
-            <li
-              key={b.id}
-              className={i === bookableIndex ? "selected" : null}
-            >
-              <button
-                className="btn"
-                onClick={() => changeBookable(i)}
-              >
-                {b.title}
-              </button>
-            </li>
-          ))}
-        </ul>
-        <p>
-          <button
-            className="btn"
-            onClick={nextBookable}
-            ref={nextButtonRef}
-            autoFocus
+      <ul className="bookables items-list-nav">
+        {bookablesInGroup.map((b, i) => (
+          <li
+            key={b.id}
+            className={i === bookableIndex ? "selected" : null}
           >
-            <FaArrowRight/>
-            <span>Next</span>
-          </button>
-        </p>
-      </div>
-
-      {bookable && (
-        <div className="bookable-details">
-          <div className="item">
-            <div className="item-header">
-              <h2>
-                {bookable.title}
-              </h2>
-              <span className="controls">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={hasDetails}
-                    onChange={toggleDetails}
-                  />
-                  Show Details
-                </label>
-              </span>
-            </div>
-
-            <p>{bookable.notes}</p>
-
-            {hasDetails && (
-              <div className="item-details">
-                <h3>Availability</h3>
-                <div className="bookable-availability">
-                  <ul>
-                    {bookable.days
-                      .sort()
-                      .map(d => <li key={d}>{days[d]}</li>)
-                    }
-                  </ul>
-                  <ul>
-                    {bookable.sessions
-                      .map(s => <li key={s}>{sessions[s]}</li>)
-                    }
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </Fragment>
+            <button
+              className="btn"
+              onClick={() => changeBookable(i)}
+            >
+              {b.title}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>
+        <button
+          className="btn"
+          onClick={nextBookable}
+          ref={nextButtonRef}
+          autoFocus
+        >
+          <FaArrowRight/>
+          <span>Next</span>
+        </button>
+      </p>
+    </div>
   );
 }
