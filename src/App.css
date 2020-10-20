@@ -240,3 +240,83 @@ main {
 header .icon-loading {
   color: white;
 }
+
+
+.bookings {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-column-gap: 20px;
+}
+.bookingsError {
+  background: var(--error);
+  color: var(--page-bg);
+  padding: 1em;
+  margin:0;
+}
+.bookingsGrid {
+  width: 100%;
+  border-collapse: collapse;
+}
+.bookingsGrid th,
+.bookingsGrid td {
+  padding:0.5em;
+  border:1px solid var(--page-bg);
+  height:5em;
+}
+.bookingsGrid th {
+  background: var(--primary);
+  color:var(--light-text);
+}
+.bookingsGrid td {
+  background:var(--light-text);
+  transition: opacity 0.4s ease;
+  opacity: 0.5;
+}
+.bookingsGrid.active td {
+  color:var(--dark-text);
+  opacity: 1;
+}
+.bookingsGrid thead th {
+  border-top:none;
+  border-bottom:none;
+}
+.bookingsGrid th:first-child,
+.bookingsGrid th:last-child {
+  border-left:none;
+  border-right:none;
+}
+.bookingsGrid.active td:hover {
+  cursor: pointer;
+  background:#eee;
+}
+.bookingsGrid.active .selected {
+  background: var(--secondary);
+  color:var(--light-text);
+}
+.bookingsGrid.active td.selected:hover {
+  background: var(--secondary);
+  color: var(--primary);
+}
+.bookingsGrid .status {
+  font-size: 200%;
+}
+.booking-details .icon-loading {
+  font-size: 100%;
+  margin-right: 0.5em;
+}
+.grid-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  overflow:auto;
+}
+
+.grid {
+  position: absolute;
+  width: 100%;
+}
+
+.placeholder {
+  background:#eee;
+  padding:2rem;
+}
