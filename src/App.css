@@ -316,6 +316,16 @@ header .icon-loading {
   width: 100%;
 }
 
+.status {
+  transition: opacity 300ms;
+  transition-delay: 100ms;
+  opacity: 1;
+}
+
+.active .status {
+  opacity: 0;
+}
+
 .placeholder {
   background:#eee;
   padding:2rem;
