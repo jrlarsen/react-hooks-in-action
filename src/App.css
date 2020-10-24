@@ -41,6 +41,10 @@ header a.btn {
   width: 9rem;
 }
 
+header span {
+  color: white;
+}
+
 .btn {
   background: var(--button-bg);
   color: var(--light-text);
