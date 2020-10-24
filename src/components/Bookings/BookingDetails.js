@@ -1,17 +1,10 @@
 import React, {useContext} from "react";
-
 import {FaEdit} from "react-icons/fa";
-
 import Booking from "./Booking";
-
 import UserContext from "../Users/UserContext";
 
 export default function BookingDetails ({booking, bookable}) {
-
-  // the context value is now an object
-  // so assign the user value via destructuring
-  const {user} = useContext(UserContext);
-
+  const user = useContext(UserContext);
   const isBooker = booking && user && (booking.bookerId === user.id);
 
   return (
