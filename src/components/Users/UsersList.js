@@ -10,7 +10,7 @@ export default function UsersList ({user, setUser}) {
   useEffect(() => {
     getData("http://localhost:3001/users")
       .then(data => {
-        setUser(data[0]); // set initial user to first (or undefined)
+        // don't set user here - it's done in UsersPage
         setUsers(data);
         setIsLoading(false);
       })
@@ -18,7 +18,7 @@ export default function UsersList ({user, setUser}) {
         setError(error);
         setIsLoading(false);
       });
-  }, [setUser]); // pass in dependency
+  }, [setUser]);
 
   if (error) {
     return <p>{error.message}</p>
@@ -28,8 +28,6 @@ export default function UsersList ({user, setUser}) {
     return <p><Spinner/> Loading users...</p>
   }
 
-  // user user.id to match selection.
-  // remove the UI for user details
   return (
     <ul className="users items-list-nav">
       {users.map(u => (
