@@ -49,7 +49,8 @@ export default function App () {
               </ul>
             </nav>
 
-            <UserPicker user={user} setUser={setUser}/>
+            {/* no props needed on UserPicker */}
+            <UserPicker/>
           </header>
 
           <Routes>
