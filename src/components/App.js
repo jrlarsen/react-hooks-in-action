@@ -20,8 +20,9 @@ import UserContext from "./Users/UserContext";
 export default function App () {
   const [user, setUser] = useState();
 
+  // set an object as the value on the provider
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={{user, setUser}}>
       <Router>
         <div className="App">
           <header>
