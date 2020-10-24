@@ -1,16 +1,11 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Spinner from "../UI/Spinner";
 
-// import contexts for the user value and updater function
-import UserContext from "./UserContext";
-import {UserSetContext} from "./UserContext";
+import {useUser} from "./UserContext";
 
 export default function UserPicker() {
+  const [user, setUser] = useUser();
   const [users, setUsers] = useState(null);
-
-  // get values from both contexts
-  const user = useContext(UserContext);
-  const setUser = useContext(UserSetContext);
 
   useEffect(() => {
     fetch("http://localhost:3001/users")

@@ -1,11 +1,11 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import UsersList from "./UsersList";
 import UserDetails from "./UserDetails";
-import UserContext from "./UserContext";
+import {useUser} from "./UserContext"; // import custom hook
 
 export default function UsersPage() {
   const [user, setUser] = useState(null);
-  const loggedInUser = useContext(UserContext);
+  const [loggedInUser] = useUser(); // use custom hook
   const currentUser = user || loggedInUser;
 
   return (

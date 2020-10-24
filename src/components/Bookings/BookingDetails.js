@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
+import React from "react";
 import {FaEdit} from "react-icons/fa";
 import Booking from "./Booking";
-import UserContext from "../Users/UserContext";
+import {useUser} from "../Users/UserContext"; // import custom hook
 
 export default function BookingDetails ({booking, bookable}) {
-  const user = useContext(UserContext);
+  const [user] = useUser(); // use custom hook
   const isBooker = booking && user && (booking.bookerId === user.id);
 
   return (
