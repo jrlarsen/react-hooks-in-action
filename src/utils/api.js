@@ -23,3 +23,19 @@ export function getBookings (bookableId, startDate, endDate) {
 
   return getData(`${urlRoot}?${query}`);
 }
+
+export function createItem (url, item) {
+  return fetch(
+    url,
+    {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(item)
+    }
+  ).then(r => {
+    if (!r.ok) {
+      throw new Error("There was a problem creating the item!");
+    }
+    return r.json();
+  });
+}
