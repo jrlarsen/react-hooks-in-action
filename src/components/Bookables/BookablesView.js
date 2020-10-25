@@ -2,19 +2,20 @@ import React from "react";
 import {Link, useParams} from "react-router-dom";
 import {FaPlus} from "react-icons/fa";
 
-import useFetch from "../../utils/useFetch";
+import {useQuery} from "react-query";
+import getData from "../../utils/api";
 
 import BookablesList from "./BookablesList";
 import BookableDetails from "./BookableDetails";
 import PageSpinner from "../UI/PageSpinner";
 
-export default function BookablesView() {
-  const {data: bookables = [], status, error} = useFetch(
-    "http://localhost:3001/bookables"
+export default function BookablesView () {
+  const {data: bookables = [], status, error} = useQuery(
+    "bookables",
+    () => getData("http://localhost:3001/bookables")
   );
 
   const {id} = useParams();
-
   const bookable = bookables.find(
     b => b.id === parseInt(id)
   ) || bookables[0];
