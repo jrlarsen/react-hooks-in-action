@@ -1,12 +1,14 @@
 import React from 'react';
+import {useQuery} from "react-query"; // import useQuery
+import getData from "../../utils/api"; // import data-fetcher
 import Spinner from "../UI/Spinner";
-
-import useFetch from "../../utils/useFetch";
 
 export default function UsersList ({user, setUser}) {
 
-  const {data: users = [], status, error} = useFetch(
-    "http://localhost:3001/users"
+  // switch from useFetch to useQuery
+  const {data: users = [], status, error} = useQuery(
+    "users",
+    () => getData("http://localhost:3001/users")
   );
 
   if (status === "error") {
