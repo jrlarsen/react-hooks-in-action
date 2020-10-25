@@ -1,43 +1,26 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import {FaArrowRight} from "react-icons/fa";
-import Spinner from "../UI/Spinner";
 
-import useFetch from "../../utils/useFetch";
-
-export default function BookablesList ({bookable, setBookable}) {
-
-  const {data : bookables = [], status, error} = useFetch(
-    "http://localhost:3001/bookables"
-  );
-
+export default function BookablesList ({bookable, bookables, getUrl}) {
   const group = bookable?.group;
   const bookablesInGroup = bookables.filter(b => b.group === group);
   const groups = [...new Set(bookables.map(b => b.group))];
 
-  useEffect(() => {
-    setBookable(bookables[0]);
-  }, [bookables, setBookable]);
+  const navigate = useNavigate();
 
-  function changeGroup (e) {
+  function changeGroup (event) {
     const bookablesInSelectedGroup = bookables.filter(
-      b => b.group === e.target.value
+      b => b.group === event.target.value
     );
-    setBookable(bookablesInSelectedGroup[0]);
+    navigate(getUrl(bookablesInSelectedGroup[0].id));
   }
 
   function nextBookable () {
     const i = bookablesInGroup.indexOf(bookable);
     const nextIndex = (i + 1) % bookablesInGroup.length;
     const nextBookable = bookablesInGroup[nextIndex];
-    setBookable(nextBookable);
-  }
-
-  if (status === "error") {
-    return <p>{error.message}</p>
-  }
-
-  if (status === "loading") {
-    return <p><Spinner/> Loading bookables...</p>
+    navigate(getUrl(nextBookable.id));
   }
 
   return (
@@ -52,12 +35,13 @@ export default function BookablesList ({bookable, setBookable}) {
             key={b.id}
             className={b.id === bookable.id ? "selected" : null}
           >
-            <button
+            <Link
+              to={getUrl(b.id)}
               className="btn"
-              onClick={() => setBookable(b)}
+              replace={true}
             >
               {b.title}
-            </button>
+            </Link>
           </li>
         ))}
       </ul>
