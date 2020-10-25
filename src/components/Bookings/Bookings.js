@@ -4,7 +4,7 @@ import {getWeek, shortISO} from "../../utils/date-wrangler";
 import {useBookingsParams, useBookings} from "./bookingsHooks";
 
 import WeekPicker from "./WeekPicker";
-import BookingsGrid from "./BookingsGrid";
+import BookingsGridSlide from "./BookingsGridSlide";
 import BookingDetails from "./BookingDetails";
 
 export default function Bookings ({bookable}) {
@@ -21,8 +21,6 @@ export default function Bookings ({bookable}) {
     setBooking(null);
   }, [bookable, weekStart]);
 
-  // deselect the booking if it no longer exists
-  // i.e. it has been deleted
   useEffect(() => {
     if (booking?.id !== undefined && !selectedBooking) {
       setBooking(null);
@@ -34,7 +32,7 @@ export default function Bookings ({bookable}) {
       <div>
         <WeekPicker/>
 
-        <BookingsGrid
+        <BookingsGridSlide
           week={week}
           bookable={bookable}
           booking={booking}
