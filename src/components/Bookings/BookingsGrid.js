@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment} from "react";
 import Spinner from "../UI/Spinner";
 
 import {useBookings, useGrid} from "./bookingsHooks";
@@ -11,10 +11,6 @@ export default function BookingsGrid (props) {
   );
 
   const {grid, sessions, dates} = useGrid(bookable, week.start);
-
-  useEffect(() => {
-    setBooking(null);
-  }, [bookable, week.start, setBooking]);
 
   function cell (session, date) {
     const cellData = bookings?.[session]?.[date]
