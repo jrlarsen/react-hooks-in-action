@@ -1,9 +1,10 @@
 import {useMemo} from "react";
 import {useSearchParams} from "react-router-dom";
-import {useQuery} from "react-query";
+import {useQuery, useMutation, queryCache} from "react-query";
+
 import {shortISO, isDate} from "../../utils/date-wrangler";
+import getData, {createItem, editItem, deleteItem} from "../../utils/api";
 import {getGrid, transformBookings} from "./grid-builder";
-import getData from "../../utils/api";
 
 export function useBookings (bookableId, startDate, endDate) {
   const start = shortISO(startDate);
@@ -44,15 +45,11 @@ export function useBookingsParams () {
   const idInt = parseInt(bookableId);
   const hasId = !isNaN(idInt);
 
-  function setBookingsDate (date) {
+  function setBookingsDate(date) {
     const params = {};
 
-    if (hasId) {
-      params.bookableId = bookableId
-    }
-    if (isDate(date)) {
-      params.date = date
-    }
+    if (hasId) {params.bookableId = bookableId}
+    if (isDate(date)) {params.date = date}
 
     if (params.date || params.bookableId !== undefined) {
       setSearchParams(params, {replace: true});
@@ -64,4 +61,45 @@ export function useBookingsParams () {
     bookableId: hasId ? idInt : undefined,
     setBookingsDate
   };
+}
+
+export function useCreateBooking (key) {
+  return useMutation(
+    item => createItem("http://localhost:3001/bookings", item),
+    {
+      onSuccess: (booking) => {
+        queryCache.invalidateQueries(key);
+        const bookings = queryCache.getQueryData(key) || [];
+        queryCache.setQueryData(key, [...bookings, booking]);
+      }
+    }
+  );
+}
+
+export function useUpdateBooking (key) {
+  return useMutation(
+    item => editItem(`http://localhost:3001/bookings/${item.id}`, item),
+    {
+      onSuccess: (booking) => {
+        queryCache.invalidateQueries(key);
+        const bookings = queryCache.getQueryData(key) || [];
+        const bookingIndex = bookings.findIndex(b => b.id === booking.id);
+        bookings[bookingIndex] = booking;
+        queryCache.setQueryData(key, bookings);
+      }
+    }
+  );
+}
+
+export function useDeleteBooking (key) {
+  return useMutation(
+    id => deleteItem(`http://localhost:3001/bookings/${id}`),
+    {
+      onSuccess: (resp, id) => {
+        queryCache.invalidateQueries(key);
+        const bookings = queryCache.getQueryData(key) || [];
+        queryCache.setQueryData(key, bookings.filter(b => b.id !== id))
+      }
+    }
+  )
 }

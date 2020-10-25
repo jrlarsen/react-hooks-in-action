@@ -1,11 +1,46 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {FaEdit} from "react-icons/fa";
+
+import {useUser} from "../Users/UserContext";
+import {useBookingsParams, useCreateBooking, useDeleteBooking, useUpdateBooking} from "./bookingsHooks";
+import {getWeek, shortISO} from "../../utils/date-wrangler";
+
 import Booking from "./Booking";
-import {useUser} from "../Users/UserContext"; // import custom hook
+import BookingForm from "./BookingForm";
 
 export default function BookingDetails ({booking, bookable}) {
-  const [user] = useUser(); // use custom hook
+  const [isEditing, setIsEditing] = useState(false);
+
+  const {date} = useBookingsParams();
+  const week = getWeek(date);
+  const key = ["bookings", bookable.id, shortISO(week.start), shortISO(week.end)];
+
+  const [user] = useUser();
   const isBooker = booking && user && (booking.bookerId === user.id);
+
+  const [createBooking, {isLoading: isCreating}] = useCreateBooking(key);
+  const [updateBooking, {isLoading: isUpdating}] = useUpdateBooking(key);
+  const [deleteBooking, {isLoading: isDeleting}] = useDeleteBooking(key);
+
+  useEffect(() => {
+    setIsEditing(booking && booking.id === undefined);
+  }, [booking]);
+
+  function handleSave(item) {
+    setIsEditing(false);
+    if (item.id === undefined) {
+      createBooking({...item, bookerId: user.id});
+    } else {
+      updateBooking(item);
+    }
+  }
+
+  function handleDelete(item) {
+    if (window.confirm("Are you sure you want to delete the booking?")) {
+      setIsEditing(false);
+      deleteBooking(item.id);
+    }
+  }
 
   return (
     <div className="booking-details">
@@ -15,6 +50,7 @@ export default function BookingDetails ({booking, bookable}) {
           <span className="controls">
             <button
               className="btn"
+              onClick={() => setIsEditing(v => !v)}
             >
               <FaEdit/>
             </button>
@@ -22,7 +58,18 @@ export default function BookingDetails ({booking, bookable}) {
         )}
       </h2>
 
-      {booking ? (
+      {isCreating || isUpdating || isDeleting ? (
+        <div className="booking-details-fields">
+          <p>Saving...</p>
+        </div>
+      ) : isEditing ? (
+        <BookingForm
+          booking={booking}
+          bookable={bookable}
+          onSave={handleSave}
+          onDelete={handleDelete}
+        />
+      ) : booking ? (
         <Booking
           booking={booking}
           bookable={bookable}
