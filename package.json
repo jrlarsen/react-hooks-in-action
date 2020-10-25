@@ -1,7 +1,7 @@
 {
   "name": "react-hooks-in-action",
   "description": "A bookings app example to accompany React Hooks in Action",
-  "version": "0.10.10",
+  "version": "0.10.11",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -13,7 +13,8 @@
     "react-icons": "^3.11.0",
     "react-query": "^2.25.2",
     "react-router-dom": "^6.0.0-beta.0",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "react-spring": "^8.0.27"
   },
   "scripts": {
     "start": "react-scripts start",
