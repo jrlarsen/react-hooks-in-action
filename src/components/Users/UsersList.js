@@ -1,23 +1,15 @@
 import React from 'react';
-import {useQuery} from "react-query"; // import useQuery
-import getData from "../../utils/api"; // import data-fetcher
-import Spinner from "../UI/Spinner";
+import {useQuery} from "react-query";
+import getData from "../../utils/api";
 
 export default function UsersList ({user, setUser}) {
-
-  // switch from useFetch to useQuery
-  const {data: users = [], status, error} = useQuery(
+  const {data: users = []} = useQuery(
     "users",
-    () => getData("http://localhost:3001/users")
+    () => getData("http://localhost:3001/users"),
+    {
+      suspense: true  // enable suspense mode
+    }
   );
-
-  if (status === "error") {
-    return <p>{error.message}</p>
-  }
-
-  if (status === "loading") {
-    return <p><Spinner/> Loading users...</p>
-  }
 
   return (
     <ul className="users items-list-nav">

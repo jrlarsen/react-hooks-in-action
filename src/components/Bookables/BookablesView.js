@@ -7,26 +7,20 @@ import getData from "../../utils/api";
 
 import BookablesList from "./BookablesList";
 import BookableDetails from "./BookableDetails";
-import PageSpinner from "../UI/PageSpinner";
 
 export default function BookablesView () {
-  const {data: bookables = [], status, error} = useQuery(
+  const {data: bookables = []} = useQuery(
     "bookables",
-    () => getData("http://localhost:3001/bookables")
+    () => getData("http://localhost:3001/bookables"),
+    {
+      suspense: true
+    }
   );
 
   const {id} = useParams();
   const bookable = bookables.find(
     b => b.id === parseInt(id)
   ) || bookables[0];
-
-  if (status === "error") {
-    return <p>{error.message}</p>
-  }
-
-  if (status === "loading") {
-    return <PageSpinner/>
-  }
 
   return (
     <main className="bookables-page">

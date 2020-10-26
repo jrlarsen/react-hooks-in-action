@@ -1,19 +1,20 @@
 import React from "react";
-import {useQuery} from "react-query"; // import useQuery
+import {useQuery} from "react-query";
 
 import {shortISO} from "../../utils/date-wrangler";
 import {useBookingsParams} from "./bookingsHooks";
-import getData from "../../utils/api"; // import data-fetching function
+import getData from "../../utils/api";
 
 import BookablesList from "../Bookables/BookablesList";
 import Bookings from "./Bookings";
-import PageSpinner from "../UI/PageSpinner";
 
 export default function BookingsPage() {
-  // switch from useFetch to useQuery
-  const {data: bookables = [], status, error} = useQuery(
+  const {data: bookables = []} = useQuery(
     "bookables",
-    () => getData("http://localhost:3001/bookables")
+    () => getData("http://localhost:3001/bookables"),
+    {
+      suspense: true // enable suspense mode
+    }
   );
 
   const {date, bookableId} = useBookingsParams();
@@ -25,14 +26,6 @@ export default function BookingsPage() {
   function getUrl (id) {
     const root = `/bookings?bookableId=${id}`;
     return date ? `${root}&date=${shortISO(date)}` : root;
-  }
-
-  if (status === "error") {
-    return <p>{error.message}</p>
-  }
-
-  if (status === "loading") {
-    return <PageSpinner/>
   }
 
   return (
