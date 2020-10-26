@@ -431,3 +431,22 @@ header .icon-loading {
 .bookables-form .controls-alt {
   float: left;
 }
+
+.user {
+  position: relative;
+  padding-left: 170px;
+}
+.user .item-header {
+  padding-left: 170px;
+  margin-left: -170px;
+}
+.user img {
+  border: 8px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top:1em;
+  left:1em;
+  background: white;
+  width:120px;
+  height:120px;
+}
