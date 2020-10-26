@@ -466,5 +466,8 @@ header .icon-loading {
   opacity: 0;
   font-size: 80%;
   margin: 0 1em;
+}
+
+.users .selected .icon-loading {
   animation: fadein 800ms forwards 300ms, spin 1.5s infinite;
 }
