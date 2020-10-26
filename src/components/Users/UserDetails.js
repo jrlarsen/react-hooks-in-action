@@ -3,7 +3,7 @@ import {useQuery} from "react-query";
 import getData from '../../utils/api';
 import Avatar from "./Avatar";
 
-export default function UserDetails ({userID, isPending}) {
+export default function UserDetails ({userID}) {
   const {data: user} = useQuery(
     ["user", userID],
     () => getData(`http://localhost:3001/users/${userID}`),
@@ -11,9 +11,7 @@ export default function UserDetails ({userID, isPending}) {
   );
 
   return (
-    <div
-      className={isPending ? "item user user-pending" : "item user"}
-    >
+    <div className="item user">
       <div className="item-header">
         <h2>{user.name}</h2>
       </div>

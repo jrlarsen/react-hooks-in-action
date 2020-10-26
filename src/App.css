@@ -455,3 +455,16 @@ header .icon-loading {
 .user-pending {
   opacity: 0.6;
 }
+
+@keyframes fadein {
+  100% {
+    opacity: 1;
+  }
+}
+
+.users .icon-loading {
+  opacity: 0;
+  font-size: 80%;
+  margin: 0 1em;
+  animation: fadein 800ms forwards 300ms, spin 1.5s infinite;
+}

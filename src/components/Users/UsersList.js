@@ -1,6 +1,7 @@
 import React from 'react';
 import {useQuery} from "react-query";
 import getData from "../../utils/api";
+import ButtonPending from "../UI/ButtonPending";
 
 export default function UsersList ({user, setUser}) {
   const {data: users = []} = useQuery(
@@ -16,12 +17,12 @@ export default function UsersList ({user, setUser}) {
           key={u.id}
           className={u.id === user?.id ? "selected" : null}
         >
-          <button
+          <ButtonPending
             className="btn"
             onClick={() => setUser(u)}
           >
             {u.name}
-          </button>
+          </ButtonPending>
         </li>
       ))}
     </ul>
