@@ -6,9 +6,7 @@ export default function UsersList ({user, setUser}) {
   const {data: users = []} = useQuery(
     "users",
     () => getData("http://localhost:3001/users"),
-    {
-      suspense: true  // enable suspense mode
-    }
+    {suspense: true}
   );
 
   return (
