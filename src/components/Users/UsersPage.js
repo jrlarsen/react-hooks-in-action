@@ -21,5 +21,5 @@ export default function UsersPage() {
         <UserDetails userID={user.id}/>
       </Suspense>
     </main>
-  ) : null;
+  ) : <PageSpinner/>;
 }
