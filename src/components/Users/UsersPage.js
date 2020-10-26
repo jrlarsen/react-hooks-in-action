@@ -1,18 +1,22 @@
-import React, {useState, Suspense} from "react";
-import {queryCache} from "react-query";
-import getData from "../../utils/api";
+import React, {useState, unstable_useTransition, Suspense} from "react";
 import UsersList from "./UsersList";
 import {useUser} from "./UserContext";
 import PageSpinner from "../UI/PageSpinner";
 import UserDetails from "./UserDetails";
+import {queryCache} from "react-query";
+import getData from "../../utils/api";
 
 export default function UsersPage() {
   const [loggedInUser] = useUser();
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
 
+  const [startTransition] = unstable_useTransition({
+    timeoutMs: 3000
+  });
+
   function switchUser(nextUser) {
-    setSelectedUser(nextUser);
+    startTransition(() => setSelectedUser(nextUser));
 
     queryCache.prefetchQuery(
       ["user", nextUser.id],
