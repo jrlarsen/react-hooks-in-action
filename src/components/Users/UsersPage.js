@@ -1,4 +1,8 @@
-import React, {useState, unstable_useTransition, Suspense} from "react";
+import React, {
+  useState,
+  unstable_useTransition as useTransition,
+  Suspense
+} from "react";
 import UsersList from "./UsersList";
 import {useUser} from "./UserContext";
 import PageSpinner from "../UI/PageSpinner";
@@ -11,9 +15,7 @@ export default function UsersPage() {
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
 
-  const [startTransition, isPending] = unstable_useTransition({
-    timeoutMs: 3000
-  });
+  const [startTransition, isPending] = useTransition();
 
   function switchUser(nextUser) {
     startTransition(() => setSelectedUser(nextUser));
