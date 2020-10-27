@@ -219,5 +219,27 @@
       "bookerId": 1,
       "id": 9
     }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "userId": 1,
+      "todo": "Write handbook"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "todo": "Plan party"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "todo": "Install new system"
+    },
+    {
+      "id": 4,
+      "userId": 4,
+      "todo": "Order coffee"
+    }
   ]
 }

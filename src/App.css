@@ -471,3 +471,30 @@ header .icon-loading {
 .users .selected .icon-loading {
   animation: fadein 800ms forwards 300ms, spin 1.5s infinite;
 }
+
+.user-bookings {
+  margin: 1.5rem 1rem 1rem -1px;
+}
+.user-bookings table {
+  width:100%;
+}
+.user-bookings th {
+  background: var(--primary);
+  color: var(--light-text);
+  width:25%;
+  padding:8px;
+}
+.user-bookings td {
+  border-bottom: 1px dotted silver;
+  padding:8px;
+  background: var(--light-text);
+  color: var(--dark-text);
+  width:25%;
+}
+.user-bookings a {
+  display: block;
+  text-decoration: none;
+}
+.user-bookings a:hover {
+  text-decoration: underline;
+}
