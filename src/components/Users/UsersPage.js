@@ -15,10 +15,7 @@ export default function UsersPage () {
   const [selectedUser, setSelectedUser] = useState(null);
   const user = selectedUser || loggedInUser;
 
-  const deferredUser = useDeferredValue(
-    user,
-    {timeoutMs: 3000}
-  ) || user;
+  const deferredUser = useDeferredValue(user) || user;
 
   const isPending = deferredUser !== user;
 

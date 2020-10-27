@@ -14,7 +14,7 @@ export default function UsersList ({user, setUser, isPending}) {
     <ul className="users items-list-nav">
       {users.map(u => (
         <li
-          key={u.title}
+          key={u.id}
           className={u.id === user?.id ? "selected" : null}
         >
           <button
