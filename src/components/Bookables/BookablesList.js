@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import {useState, Fragment} from 'react';
 import {bookables, sessions, days} from "../../static.json";
 import {FaArrowRight} from "react-icons/fa";
 
