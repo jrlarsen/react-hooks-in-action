@@ -1,4 +1,3 @@
-import React from 'react';
 import {bookables} from "../../static.json";
 
 export default function BookablesList () {
