@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import {useState, useEffect, Fragment} from 'react';
 import Spinner from "../UI/Spinner";
 
 export default function UsersList () {
