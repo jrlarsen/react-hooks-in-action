@@ -1,4 +1,4 @@
-import React, {useReducer, useEffect, Fragment} from 'react';
+import {useReducer, useEffect, Fragment} from 'react';
 import {sessions, days} from "../../static.json";
 import {FaArrowRight} from "react-icons/fa";
 import Spinner from "../UI/Spinner";
