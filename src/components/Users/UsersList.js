@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import {useState, Fragment} from 'react';
 import {users} from "../../static.json";
 
 export default function UsersList () {
