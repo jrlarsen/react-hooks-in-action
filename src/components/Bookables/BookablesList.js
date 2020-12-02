@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {FaArrowRight} from "react-icons/fa";
 import Spinner from "../UI/Spinner";
 import getData from "../../utils/api";

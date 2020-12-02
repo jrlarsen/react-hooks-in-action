@@ -1,4 +1,4 @@
-import React, {useReducer, useRef} from "react";
+import {useReducer, useRef} from "react";
 import reducer from "./weekReducer";
 import {getWeek} from "../../utils/date-wrangler";
 import {FaChevronLeft, FaCalendarDay, FaChevronRight, FaCalendarCheck} from "react-icons/fa";
