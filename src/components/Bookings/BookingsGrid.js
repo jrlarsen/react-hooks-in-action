@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function BookingsGrid (props) {
   const {week, bookable, booking, setBooking} = props;
 

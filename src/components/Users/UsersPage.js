@@ -1,8 +1,8 @@
-import React, {useState} from "react"; // import useState
+import {useState} from "react"; // import useState
 import UsersList from "./UsersList";
 import UserDetails from "./UserDetails"; // import new component
 
-export default function UsersPage() {
+export default function UsersPage () {
   // manage selected user state
   const [user, setUser] = useState(null);
 
