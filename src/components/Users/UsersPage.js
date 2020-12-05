@@ -1,10 +1,10 @@
-import React, {useState, useContext} from "react";
+import {useState, useContext} from "react";
 import UsersList from "./UsersList";
 import UserDetails from "./UserDetails";
 
 import UserContext from "./UserContext";
 
-export default function UsersPage() {
+export default function UsersPage () {
   const [user, setUser] = useState(null);
 
   // the value from context is now an object,
