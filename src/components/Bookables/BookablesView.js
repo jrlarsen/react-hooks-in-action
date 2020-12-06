@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from "react";
+import {useState, Fragment} from "react";
 
 import BookablesList from "./BookablesList";
 import BookableDetails from "./BookableDetails";

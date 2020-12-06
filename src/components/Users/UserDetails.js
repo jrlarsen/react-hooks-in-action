@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function UserDetails ({user}) {
   return user ? (
     <div className="item user">
