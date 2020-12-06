@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState, Fragment} from "react";
+import {useEffect, useMemo, useState, Fragment} from "react";
 import {getGrid, transformBookings} from "./grid-builder";
 import {getBookings} from "../../utils/api";
 import Spinner from "../UI/Spinner";

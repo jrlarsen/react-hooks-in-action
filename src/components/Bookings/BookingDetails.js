@@ -1,4 +1,3 @@
-import React from "react";
 import {FaEdit} from "react-icons/fa";
 import Booking from "./Booking";
 import {useUser} from "../Users/UserContext"; // import custom hook
