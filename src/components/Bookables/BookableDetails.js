@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {days, sessions} from "../../static.json";
 
 export default function BookableDetails ({bookable}) {

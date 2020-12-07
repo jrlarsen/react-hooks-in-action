@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import Spinner from "../UI/Spinner";
 import {useUser} from "./UserContext";
 
 import useFetch from "../../utils/useFetch";
 
-export default function UserPicker() {
+export default function UserPicker () {
   const [user, setUser] = useUser();
 
   const {data: users = [], status} = useFetch(
@@ -15,8 +15,8 @@ export default function UserPicker() {
     setUser(users[0]);
   }, [users, setUser]);
 
-  function handleSelect(e) {
-    const selectedID = parseInt(e.target.value);
+  function handleSelect (e) {
+    const selectedID = parseInt(e.target.value, 10);
     const selectedUser = users.find(u => u.id === selectedID);
     setUser(selectedUser);
   }

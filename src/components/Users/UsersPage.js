@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import UsersList from "./UsersList";
 import UserDetails from "./UserDetails";
 import {useUser} from "./UserContext"; // import custom hook

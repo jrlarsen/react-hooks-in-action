@@ -38,7 +38,7 @@ export function useBookingsParams () {
     ? new Date(searchDate)
     : new Date();
 
-  const idInt = parseInt(bookableId);
+  const idInt = parseInt(bookableId, 10);
   const hasId = !isNaN(idInt);
 
   return {

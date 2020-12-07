@@ -41,10 +41,6 @@ header a.btn {
   width: 9rem;
 }
 
-header span {
-  color: white;
-}
-
 .btn {
   background: var(--button-bg);
   color: var(--light-text);
@@ -73,6 +69,7 @@ a.btn {
 .btn-delete {
   background: var(--error);
   color: white;
+  margin-bottom: 0.5em;
 }
 
 .btn > svg:first-child {
@@ -237,12 +234,41 @@ main {
   }
 }
 
+.page-loading {
+  font-size: 300%;
+}
+
 .icon-loading {
   animation: spin 1.5s linear infinite;
 }
 
 header .icon-loading {
   color: white;
+}
+
+
+.item-form {
+  width:100%;
+}
+
+.item-form input[type=text] {
+  padding:0.5em 1em;
+  border-radius:1em;
+  border:none;
+  font-size:100%;
+}
+
+.item-form textarea {
+  font-size: 100%;
+  padding:0.5em 1em;
+  width:80%;
+  max-width:60em;
+  margin-bottom: 1em;
+}
+
+.item-form label.field {
+  display: block;
+  margin:1em 0 3px;
 }
 
 
@@ -369,7 +395,7 @@ header .icon-loading {
   margin-bottom: 1em;
   background: var(--secondary);
   color:#fff;
-  overflow: hidden;
+  width:auto;
 }
 .booking-details-fields label {
   display: block;
@@ -389,4 +415,19 @@ header .icon-loading {
 .placeholder {
   background:#eee;
   padding:2rem;
+}
+
+
+.bookables-form {
+  max-width: 70em;
+  margin:1em auto;
+}
+
+
+.bookables-form .controls {
+  text-align: right;
+}
+
+.bookables-form .controls-alt {
+  float: left;
 }
