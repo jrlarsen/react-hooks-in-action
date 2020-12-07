@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from "react";
+import {lazy, Suspense} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,11 +6,8 @@ import {
   Link
 } from "react-router-dom";
 import "../App.css";
-
 import {FaCalendarAlt, FaDoorOpen, FaUsers} from "react-icons/fa";
-
 import UserPicker from "./Users/UserPicker.js";
-
 import {UserProvider} from "./Users/UserContext";
 
 import PageSpinner from "./UI/PageSpinner";
@@ -61,6 +58,5 @@ export default function App () {
         </div>
       </Router>
     </UserProvider>
-
   );
 }
