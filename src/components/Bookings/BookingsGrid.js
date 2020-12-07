@@ -3,9 +3,9 @@ import Spinner from "../UI/Spinner";
 
 import {useBookings, useGrid} from "./bookingsHooks";
 
-export default function BookingsGrid (props) {
-  const {week, bookable, booking, setBooking} = props;
-
+export default function BookingsGrid (
+  {week, bookable, booking, setBooking}
+) {
   const {bookings, status, error} = useBookings(
     bookable?.id, week.start, week.end
   );
