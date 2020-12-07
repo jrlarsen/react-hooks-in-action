@@ -1,14 +1,13 @@
-import React from "react";
 import BookableForm from "./BookableForm";
 import useFormState from "./useFormState";
 
-export default function BookableNew() {
+export default function BookableNew () {
   const status = "success";
   const error = {message: "Error!"};
 
   const formState = useFormState();
 
-  function handleSubmit() {
+  function handleSubmit () {
   }
 
   if (status === "error") {

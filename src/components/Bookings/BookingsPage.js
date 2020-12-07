@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import BookablesList from "../Bookables/BookablesList";
 import Bookings from "./Bookings";
 
-export default function BookingsPage() {
+export default function BookingsPage () {
   const [bookable, setBookable] = useState(null);
 
   return (

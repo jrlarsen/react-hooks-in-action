@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import {Fragment, useEffect} from "react";
 import Spinner from "../UI/Spinner";
 
 import {useBookings, useGrid} from "./bookingsHooks";
