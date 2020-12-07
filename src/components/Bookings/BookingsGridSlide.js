@@ -1,11 +1,10 @@
-import React from "react";
 import {animated} from "react-spring";
 
 import {useSlide} from "./bookingsHooks";
 
 import BookingsGrid from "./BookingsGrid";
 
-export default function BookingsGridSlide(props) {
+export default function BookingsGridSlide (props) {
   const {week, bookable, booking, setBooking} = props;
 
   const transitions = useSlide(bookable, week);
