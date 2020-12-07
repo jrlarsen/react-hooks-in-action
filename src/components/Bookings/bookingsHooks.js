@@ -40,7 +40,7 @@ export function useBookingsParams () {
   const idInt = parseInt(bookableId, 10);
   const hasId = !isNaN(idInt);
 
-  function setBookingsDate(date) {
+  function setBookingsDate (date) {
     const params = {};
 
     if (hasId) {params.bookableId = bookableId}
