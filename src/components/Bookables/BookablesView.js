@@ -1,4 +1,3 @@
-import React from "react";
 import {Link, useParams} from "react-router-dom";
 import {FaPlus} from "react-icons/fa";
 
@@ -17,7 +16,7 @@ export default function BookablesView () {
 
   const {id} = useParams();
   const bookable = bookables.find(
-    b => b.id === parseInt(id)
+    b => b.id === parseInt(id, 10)
   ) || bookables[0];
 
   if (status === "error") {
