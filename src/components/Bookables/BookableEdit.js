@@ -1,4 +1,3 @@
-import React from "react";
 import {useParams} from "react-router-dom";
 import {queryCache, useQuery} from "react-query";
 
@@ -8,7 +7,7 @@ import getData from "../../utils/api";
 import BookableForm from "./BookableForm";
 import PageSpinner from "../UI/PageSpinner";
 
-export default function BookableEdit() {
+export default function BookableEdit () {
   const {id} = useParams();
 
   const {data, isLoading} = useQuery(
@@ -17,14 +16,17 @@ export default function BookableEdit() {
     {
       initialData:
         queryCache.getQueryData("bookables")
-          ?.find(b => b.id === parseInt(id))
+          ?.find(b => b.id === parseInt(id, 10))
     }
   );
 
   const formState = useFormState(data);
 
-  function handleDelete() {}
-  function handleSubmit() {}
+  function handleDelete () {
+  }
+
+  function handleSubmit () {
+  }
 
   if (isLoading) {
     return <PageSpinner/>
