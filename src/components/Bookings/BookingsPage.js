@@ -1,4 +1,3 @@
-import React from "react";
 import {useQuery} from "react-query"; // import useQuery
 
 import {shortISO} from "../../utils/date-wrangler";
@@ -9,7 +8,7 @@ import BookablesList from "../Bookables/BookablesList";
 import Bookings from "./Bookings";
 import PageSpinner from "../UI/PageSpinner";
 
-export default function BookingsPage() {
+export default function BookingsPage () {
   // switch from useFetch to useQuery
   const {data: bookables = [], status, error} = useQuery(
     "bookables",
