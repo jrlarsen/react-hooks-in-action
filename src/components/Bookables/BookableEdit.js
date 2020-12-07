@@ -1,17 +1,16 @@
-import React from "react";
 import BookableForm from "./BookableForm";
 import useFormState from "./useFormState";
 
-export default function BookableEdit() {
+export default function BookableEdit () {
   const status = "success";
   const error = {message: "Error!"};
 
   const formState = useFormState();
 
-  function handleDelete() {
+  function handleDelete () {
   }
 
-  function handleSubmit() {
+  function handleSubmit () {
   }
 
   if (status === "error") {
@@ -19,7 +18,7 @@ export default function BookableEdit() {
   }
 
   if (status === "loading") {
-    return <p>Loading!!!</p>
+    return <p>Loading...</p>
   }
 
   return (

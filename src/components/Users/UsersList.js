@@ -1,4 +1,3 @@
-import React from 'react';
 import Spinner from "../UI/Spinner";
 
 import useFetch from "../../utils/useFetch";
