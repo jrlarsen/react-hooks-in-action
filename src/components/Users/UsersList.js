@@ -1,4 +1,3 @@
-import React from 'react';
 import {useQuery} from "react-query"; // import useQuery
 import getData from "../../utils/api"; // import data-fetcher
 import Spinner from "../UI/Spinner";

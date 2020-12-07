@@ -189,14 +189,6 @@
     },
     {
       "session": "Lunch",
-      "date": "2020-05-25",
-      "bookableId": 7,
-      "title": "Movie Pitch!",
-      "bookerId": 1,
-      "id": 6
-    },
-    {
-      "session": "Lunch",
       "date": "2020-06-26",
       "bookableId": 1,
       "title": "New Employee Intro",
