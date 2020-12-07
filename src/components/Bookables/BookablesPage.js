@@ -1,11 +1,10 @@
-import React from "react";
 import {Routes, Route} from "react-router-dom";
 
 import BookablesView from "./BookablesView";
 import BookableEdit from "./BookableEdit";
 import BookableNew from "./BookableNew";
 
-export default function BookablesPage() {
+export default function BookablesPage () {
   return (
     <Routes>
       <Route path="/:id">
