@@ -4,17 +4,18 @@
   "version": "0.13.4",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
     "history": "^5.0.0",
-    "react": "^0.0.0-experimental-4ead6b530",
-    "react-dom": "^0.0.0-experimental-4ead6b530",
+    "react": "0.0.0-experimental-4ead6b530",
+    "react-dom": "0.0.0-experimental-4ead6b530",
     "react-icons": "^3.11.0",
-    "react-query": "^2.25.2",
+    "react-query": "^2.26.4",
     "react-router-dom": "^6.0.0-beta.0",
-    "react-scripts": "^3.4.3",
-    "react-spring": "^8.0.27"
+    "react-scripts": "4.0.1",
+    "react-spring": "^8.0.27",
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

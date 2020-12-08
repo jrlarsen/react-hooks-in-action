@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import {Suspense} from "react";
 import {useQuery} from "react-query";
 
 export default function Avatar ({src, alt, fallbackSrc, ...props}) {

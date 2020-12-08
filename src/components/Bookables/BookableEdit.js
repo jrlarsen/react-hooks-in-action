@@ -1,4 +1,3 @@
-import React from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {queryCache, useMutation, useQuery} from "react-query";
 
@@ -8,7 +7,7 @@ import getData, {editItem, deleteItem} from "../../utils/api";
 import BookableForm from "./BookableForm";
 import PageSpinner from "../UI/PageSpinner";
 
-export default function BookableEdit() {
+export default function BookableEdit () {
   const {id} = useParams();
   const {data, isLoading} = useBookable(id);
   const formState = useFormState(data);
@@ -29,14 +28,14 @@ export default function BookableEdit() {
     error: deleteError
   }] = useDeleteBookable();
 
-  function handleDelete() {
+  function handleDelete () {
     if (window.confirm("Are you sure you want to delete the bookable?")) {
       // call the mutation function for deleting the bookable
       deleteBookable(formState.state);
     }
   }
 
-  function handleSubmit() {
+  function handleSubmit () {
     // call the mutation function for updating the bookable
     updateBookable(formState.state);
   }
@@ -58,7 +57,7 @@ export default function BookableEdit() {
   );
 }
 
-function useBookable(id) {
+function useBookable (id) {
   return useQuery(
     ["bookable", id],
     () => getData(`http://localhost:3001/bookables/${id}`),
@@ -73,7 +72,7 @@ function useBookable(id) {
   );
 }
 
-function useUpdateBookable() {
+function useUpdateBookable () {
   const navigate = useNavigate();
   return useMutation(
     item => editItem(`http://localhost:3001/bookables/${item.id}`, item),
@@ -96,7 +95,7 @@ function useUpdateBookable() {
 /* Replace a bookable in the cache
  * with the updated version.
  */
-function updateBookablesCache(bookable) {
+function updateBookablesCache (bookable) {
   // get all the bookables from the cache
   const bookables = queryCache.getQueryData("bookables") || [];
 
