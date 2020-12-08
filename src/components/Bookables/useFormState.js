@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export default function useFormState(data) {
+export default function useFormState (data) {
   const [state, setState] = useState(data);
 
   useEffect(() => {
@@ -9,17 +9,17 @@ export default function useFormState(data) {
     }
   }, [data]);
 
-  function handleChange(e) {
+  function handleChange (e) {
     setState({
       ...state,
       [e.target.name]: e.target.value
     });
   }
 
-  function handleChecked(e) {
+  function handleChecked (e) {
     const {name, value, checked} = e.target;
     const values = new Set(state[name]);
-    const intValue = parseInt(value);
+    const intValue = parseInt(value, 10);
 
     values.delete(intValue);
     if (checked) values.add(intValue);

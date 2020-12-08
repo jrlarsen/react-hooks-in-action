@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {FaEdit} from "react-icons/fa";
 
 import {useUser} from "../Users/UserContext";
@@ -26,7 +26,7 @@ export default function BookingDetails ({booking, bookable}) {
     setIsEditing(booking && booking.id === undefined);
   }, [booking]);
 
-  function handleSave(item) {
+  function handleSave (item) {
     setIsEditing(false);
     if (item.id === undefined) {
       createBooking({...item, bookerId: user.id});
@@ -35,7 +35,7 @@ export default function BookingDetails ({booking, bookable}) {
     }
   }
 
-  function handleDelete(item) {
+  function handleDelete (item) {
     if (window.confirm("Are you sure you want to delete the booking?")) {
       setIsEditing(false);
       deleteBooking(item.id);
