@@ -1,10 +1,9 @@
-import React from "react";
 import {Link} from "react-router-dom";
 import {FaCloudUploadAlt, FaTrash, FaWindowClose} from "react-icons/fa";
 
 import {days as daysArray, sessions as sessionsArray} from "../../static.json";
 
-export default function BookableForm({formState = {}, handleSubmit, handleDelete}) {
+export default function BookableForm ({formState = {}, handleSubmit, handleDelete}) {
   const {state = {}, handleChange, handleChecked} = formState;
   const {title = "", group = "", notes = ""} = state;
   const {days = [], sessions = []} = state;
