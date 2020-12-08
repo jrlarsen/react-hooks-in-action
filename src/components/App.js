@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, Fragment} from "react";
+import {lazy, Suspense, Fragment} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,12 +6,9 @@ import {
   Link
 } from "react-router-dom";
 import "../App.css";
-
 import {FaCalendarAlt, FaDoorOpen, FaUsers} from "react-icons/fa";
-
-import UserPicker from "./Users/UserPicker.js";
+import UserPicker from "./Users/UserPicker";
 import PageSpinner from "./UI/PageSpinner";
-
 import {UserProvider} from "./Users/UserContext";
 
 import ErrorBoundary from "./UI/ErrorBoundary";
