@@ -43,14 +43,18 @@ export function useBookingsParams () {
     ? new Date(searchDate)
     : new Date();
 
-  const idInt = parseInt(bookableId);
+  const idInt = parseInt(bookableId, 10);
   const hasId = !isNaN(idInt);
 
-  function setBookingsDate(date) {
+  function setBookingsDate (date) {
     const params = {};
 
-    if (hasId) {params.bookableId = bookableId}
-    if (isDate(date)) {params.date = date}
+    if (hasId) {
+      params.bookableId = bookableId
+    }
+    if (isDate(date)) {
+      params.date = date
+    }
 
     if (params.date || params.bookableId !== undefined) {
       setSearchParams(params, {replace: true});
@@ -105,7 +109,7 @@ export function useDeleteBooking (key) {
   )
 }
 
-function getSlideStyles(date1, date2) {
+function getSlideStyles (date1, date2) {
   // vertical transition
   if (date1 === date2) {
     return {
