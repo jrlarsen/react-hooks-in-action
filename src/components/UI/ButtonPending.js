@@ -1,4 +1,4 @@
-import React, {unstable_useTransition} from 'react';
+import {unstable_useTransition} from 'react';
 import Spinner from "./Spinner";
 
 export default function ButtonPending ({children, onClick, ...props}) {

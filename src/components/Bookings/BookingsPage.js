@@ -1,4 +1,3 @@
-import React from "react";
 import {useQuery} from "react-query";
 
 import {shortISO} from "../../utils/date-wrangler";
@@ -8,7 +7,7 @@ import getData from "../../utils/api";
 import BookablesList from "../Bookables/BookablesList";
 import Bookings from "./Bookings";
 
-export default function BookingsPage() {
+export default function BookingsPage () {
   const {data: bookables = []} = useQuery(
     "bookables",
     () => getData("http://localhost:3001/bookables"),

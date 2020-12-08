@@ -1,4 +1,4 @@
-import React, {Suspense, unstable_SuspenseList as SuspenseList} from "react";
+import {Suspense, unstable_SuspenseList as SuspenseList} from "react";
 import {useQuery} from "react-query";
 import getData from '../../utils/api';
 import Avatar from "./Avatar";

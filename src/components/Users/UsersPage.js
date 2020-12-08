@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   unstable_useDeferredValue as useDeferredValue,
   Suspense
