@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import {useRef} from "react";
 import {
   FaChevronLeft,
   FaCalendarDay,
@@ -12,7 +12,7 @@ import {useBookingsParams} from "./bookingsHooks";
 export default function WeekPicker () {
   const textboxRef = useRef();
 
-  const {date, setBookingsDate : goToDate} = useBookingsParams();
+  const {date, setBookingsDate: goToDate} = useBookingsParams();
 
   const dates = {
     prev: shortISO(addDays(date, -7)),
