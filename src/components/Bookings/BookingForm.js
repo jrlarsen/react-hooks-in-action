@@ -1,9 +1,9 @@
-import React, {Fragment} from "react";
+import {Fragment} from "react";
 import {FaTrash, FaCloudUploadAlt} from "react-icons/fa";
 
 import useFormState from "../Bookables/useFormState";
 
-export default function BookingForm({booking, bookable, onSave, onDelete}) {
+export default function BookingForm ({booking, bookable, onSave, onDelete}) {
   const {state, handleChange} = useFormState(booking);
   const isNew = booking?.id === undefined;
 
