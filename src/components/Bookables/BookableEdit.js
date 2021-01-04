@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import {queryCache, useQuery} from "react-query";
+import {useQueryClient, useQuery} from "react-query";
 
 import useFormState from "./useFormState";
 import getData from "../../utils/api";
@@ -8,6 +8,7 @@ import BookableForm from "./BookableForm";
 import PageSpinner from "../UI/PageSpinner";
 
 export default function BookableEdit () {
+  const queryClient = useQueryClient();
   const {id} = useParams();
 
   const {data, isLoading} = useQuery(
@@ -15,7 +16,7 @@ export default function BookableEdit () {
     () => getData(`http://localhost:3001/bookables/${id}`),
     {
       initialData:
-        queryCache.getQueryData("bookables")
+        queryClient.getQueryData("bookables")
           ?.find(b => b.id === parseInt(id, 10))
     }
   );
