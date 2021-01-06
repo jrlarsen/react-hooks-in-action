@@ -18,9 +18,9 @@ export default function BookingDetails ({booking, bookable}) {
   const [user] = useUser();
   const isBooker = booking && user && (booking.bookerId === user.id);
 
-  const [createBooking, {isLoading: isCreating}] = useCreateBooking(key);
-  const [updateBooking, {isLoading: isUpdating}] = useUpdateBooking(key);
-  const [deleteBooking, {isLoading: isDeleting}] = useDeleteBooking(key);
+  const {createBooking, isCreating} = useCreateBooking(key);
+  const {updateBooking, isUpdating} = useUpdateBooking(key);
+  const {deleteBooking, isDeleting} = useDeleteBooking(key);
 
   useEffect(() => {
     setIsEditing(booking && booking.id === undefined);
