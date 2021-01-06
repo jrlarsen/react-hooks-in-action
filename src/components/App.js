@@ -1,22 +1,18 @@
+import {QueryClient, QueryClientProvider} from "react-query";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link
 } from "react-router-dom";
-
 import "../App.css";
-
 import {FaCalendarAlt, FaDoorOpen, FaUsers} from "react-icons/fa";
 
 import BookablesPage from "./Bookables/BookablesPage";
 import BookingsPage from "./Bookings/BookingsPage";
 import UsersPage from "./Users/UsersPage";
 import UserPicker from "./Users/UserPicker";
-
 import {UserProvider} from "./Users/UserContext";
-
-import {QueryClient, QueryClientProvider} from "react-query";
 
 const queryClient = new QueryClient();
 
