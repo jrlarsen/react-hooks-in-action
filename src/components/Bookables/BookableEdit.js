@@ -8,8 +8,8 @@ import BookableForm from "./BookableForm";
 import PageSpinner from "../UI/PageSpinner";
 
 export default function BookableEdit () {
-  const queryClient = useQueryClient();
   const {id} = useParams();
+  const queryClient = useQueryClient();
 
   const {data, isLoading} = useQuery(
     ["bookable", id],

@@ -8,9 +8,9 @@ import BookableForm from "./BookableForm";
 import PageSpinner from "../UI/PageSpinner";
 
 export default function BookableNew () {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const formState = useFormState();
+  const queryClient = useQueryClient();
 
   const {mutate: createBookable, status, error} = useMutation(
 
