@@ -15,7 +15,6 @@ export default function BookableForm ({formState = {}, handleSubmit, handleDelet
           <h2>{handleDelete ? "Edit" : "New"} Bookable</h2>
         </div>
 
-
         <label htmlFor="title" className="field">Title</label>
         <input
           type="text"
