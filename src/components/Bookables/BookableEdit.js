@@ -1,5 +1,5 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {queryCache, useMutation, useQuery} from "react-query";
+import {useQueryClient, useMutation, useQuery} from "react-query";
 
 import useFormState from "./useFormState";
 import getData, {editItem, deleteItem} from "../../utils/api";
@@ -14,19 +14,21 @@ export default function BookableEdit () {
 
   // get the mutation function and status booleans
   // for updating the bookable
-  const [updateBookable, {
-    isLoading: isUpdating,
-    isError: isUpdateError,
-    error: updateError
-  }] = useUpdateBookable();
+  const {
+    updateBookable,
+    isUpdating,
+    isUpdateError,
+    updateError
+  } = useUpdateBookable();
 
   // get the mutation function and status booleans
   // for deleting the bookable
-  const [deleteBookable, {
-    isLoading: isDeleting,
-    isError: isDeleteError,
-    error: deleteError
-  }] = useDeleteBookable();
+  const {
+    deleteBookable,
+    isDeleting,
+    isDeleteError,
+    deleteError
+  } = useDeleteBookable();
 
   function handleDelete () {
     if (window.confirm("Are you sure you want to delete the bookable?")) {
@@ -58,6 +60,7 @@ export default function BookableEdit () {
 }
 
 function useBookable (id) {
+  const queryClient = useQueryClient();
   return useQuery(
     ["bookable", id],
     () => getData(`http://localhost:3001/bookables/${id}`),
@@ -65,7 +68,7 @@ function useBookable (id) {
       // refetching causes problems after deleting a bookable
       refetchOnWindowFocus: false,
 
-      initialData: queryCache
+      initialData: queryClient
         .getQueryData("bookables")
         ?.find(b => b.id === parseInt(id, 10))
     }
@@ -74,30 +77,38 @@ function useBookable (id) {
 
 function useUpdateBookable () {
   const navigate = useNavigate();
-  return useMutation(
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
     item => editItem(`http://localhost:3001/bookables/${item.id}`, item),
     {
       onSuccess: bookable => {
         // replace the pre-edited version in the "bookables" cache
         // with the edited bookable
-        updateBookablesCache(bookable);
+        updateBookablesCache(bookable, queryClient);
 
         // do the same for the individual "bookable" cache
-        queryCache.setQueryData(["bookable", String(bookable.id)], bookable);
+        queryClient.setQueryData(["bookable", String(bookable.id)], bookable);
 
         // show the updated bookable
         navigate(`/bookables/${bookable.id}`);
       }
     }
   );
+
+  return {
+    updateBookable: mutation.mutate,
+    isUpdating: mutation.isLoading,
+    isUpdateError: mutation.isError,
+    updateError: mutation.error
+  };
 }
 
 /* Replace a bookable in the cache
  * with the updated version.
  */
-function updateBookablesCache (bookable) {
+function updateBookablesCache (bookable, queryClient) {
   // get all the bookables from the cache
-  const bookables = queryCache.getQueryData("bookables") || [];
+  const bookables = queryClient.getQueryData("bookables") || [];
 
   // find the index in the cache of the bookable that's been edited
   const bookableIndex = bookables.findIndex(b => b.id === bookable.id);
@@ -105,22 +116,23 @@ function updateBookablesCache (bookable) {
   // if found, replace the pre-edited version with the edited one
   if (bookableIndex !== -1) {
     bookables[bookableIndex] = bookable;
-    queryCache.setQueryData("bookables", bookables);
+    queryClient.setQueryData("bookables", bookables);
   }
 }
 
 function useDeleteBookable () {
   const navigate = useNavigate();
-  return useMutation(
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
     bookable => deleteItem(`http://localhost:3001/bookables/${bookable.id}`),
     {
       /* on success receives the original item as a second argument */
       onSuccess: (response, bookable) => {
         // get all the bookables from the cache
-        const bookables = queryCache.getQueryData("bookables") || [];
+        const bookables = queryClient.getQueryData("bookables") || [];
 
         // set the bookables cache without the deleted one
-        queryCache.setQueryData(
+        queryClient.setQueryData(
           "bookables",
           bookables.filter(b => b.id !== bookable.id)
         );
@@ -131,6 +143,13 @@ function useDeleteBookable () {
       }
     }
   );
+
+  return {
+    deleteBookable: mutation.mutate,
+    isDeleting: mutation.isLoading,
+    isDeleteError: mutation.isError,
+    deleteError: mutation.error
+  };
 }
 
 function getIdForFirstInGroup (bookables, excludedBookable) {
