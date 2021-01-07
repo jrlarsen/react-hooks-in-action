@@ -1,6 +1,6 @@
 import {useMemo, useEffect, useRef} from "react";
 import {useSearchParams} from "react-router-dom";
-import {useQuery, useMutation, queryCache} from "react-query";
+import {useQuery, useMutation, useQueryClient} from "react-query";
 import {useTransition} from "react-spring";
 
 import {shortISO, isDate} from "../../utils/date-wrangler";
@@ -69,44 +69,62 @@ export function useBookingsParams () {
 }
 
 export function useCreateBooking (key) {
-  return useMutation(
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
     item => createItem("http://localhost:3001/bookings", item),
     {
       onSuccess: (booking) => {
-        queryCache.invalidateQueries(key);
-        const bookings = queryCache.getQueryData(key) || [];
-        queryCache.setQueryData(key, [...bookings, booking]);
+        queryClient.invalidateQueries(key);
+        const bookings = queryClient.getQueryData(key) || [];
+        queryClient.setQueryData(key, [...bookings, booking]);
       }
     }
   );
+
+  return {
+    createBooking: mutation.mutate,
+    isCreating: mutation.isLoading
+  };
 }
 
 export function useUpdateBooking (key) {
-  return useMutation(
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
     item => editItem(`http://localhost:3001/bookings/${item.id}`, item),
     {
       onSuccess: (booking) => {
-        queryCache.invalidateQueries(key);
-        const bookings = queryCache.getQueryData(key) || [];
+        queryClient.invalidateQueries(key);
+        const bookings = queryClient.getQueryData(key) || [];
         const bookingIndex = bookings.findIndex(b => b.id === booking.id);
         bookings[bookingIndex] = booking;
-        queryCache.setQueryData(key, bookings);
+        queryClient.setQueryData(key, bookings);
       }
     }
   );
+
+  return {
+    updateBooking: mutation.mutate,
+    isUpdating: mutation.isLoading
+  };
 }
 
 export function useDeleteBooking (key) {
-  return useMutation(
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
     id => deleteItem(`http://localhost:3001/bookings/${id}`),
     {
       onSuccess: (resp, id) => {
-        queryCache.invalidateQueries(key);
-        const bookings = queryCache.getQueryData(key) || [];
-        queryCache.setQueryData(key, bookings.filter(b => b.id !== id))
+        queryClient.invalidateQueries(key);
+        const bookings = queryClient.getQueryData(key) || [];
+        queryClient.setQueryData(key, bookings.filter(b => b.id !== id))
       }
     }
-  )
+  );
+
+  return {
+    deleteBooking: mutation.mutate,
+    isDeleting: mutation.isLoading
+  };
 }
 
 function getSlideStyles (date1, date2) {
