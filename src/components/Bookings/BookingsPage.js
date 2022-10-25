@@ -12,7 +12,7 @@ export default function BookingsPage () {
   // switch from useFetch to useQuery
   const {data: bookables = [], status, error} = useQuery(
     "bookables",
-    () => getData("http://localhost:3001/bookables")
+    () => getData("http://localhost:3009/bookables")
   );
 
   const {date, bookableId} = useBookingsParams();

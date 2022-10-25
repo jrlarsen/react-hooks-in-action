@@ -10,7 +10,7 @@ export default function UserPicker () {
   // switch from useFetch to useQuery
   const {data: users = [], status} = useQuery(
     "users",
-    () => getData("http://localhost:3001/users")
+    () => getData("http://localhost:3009/users")
   );
 
   useEffect(() => {

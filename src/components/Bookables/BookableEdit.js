@@ -63,7 +63,7 @@ function useBookable (id) {
   const queryClient = useQueryClient();
   return useQuery(
     ["bookable", id],
-    () => getData(`http://localhost:3001/bookables/${id}`),
+    () => getData(`http://localhost:3009/bookables/${id}`),
     {
       // refetching causes problems after deleting a bookable
       refetchOnWindowFocus: false,
@@ -79,7 +79,7 @@ function useUpdateBookable () {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    item => editItem(`http://localhost:3001/bookables/${item.id}`, item),
+    item => editItem(`http://localhost:3009/bookables/${item.id}`, item),
     {
       onSuccess: bookable => {
         // replace the pre-edited version in the "bookables" cache
@@ -124,7 +124,7 @@ function useDeleteBookable () {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    bookable => deleteItem(`http://localhost:3001/bookables/${bookable.id}`),
+    bookable => deleteItem(`http://localhost:3009/bookables/${bookable.id}`),
     {
       /* on success receives the original item as a second argument */
       onSuccess: (response, bookable) => {

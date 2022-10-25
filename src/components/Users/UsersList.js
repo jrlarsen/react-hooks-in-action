@@ -7,7 +7,7 @@ export default function UsersList ({user, setUser}) {
   // switch from useFetch to useQuery
   const {data: users = [], status, error} = useQuery(
     "users",
-    () => getData("http://localhost:3001/users")
+    () => getData("http://localhost:3009/users")
   );
 
   if (status === "error") {

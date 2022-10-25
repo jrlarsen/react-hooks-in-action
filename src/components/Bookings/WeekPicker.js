@@ -38,7 +38,13 @@ export default function WeekPicker () {
           <FaCalendarDay/>
           <span>Today</span>
         </button>
-
+        <button
+          className="btn"
+          onClick={() => goToDate(dates.next)}
+        >
+          <FaCalendarDay/>
+          <span>Tomorrow</span>
+        </button>
         <span>
           <input
             type="text"

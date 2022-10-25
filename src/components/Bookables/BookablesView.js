@@ -11,7 +11,7 @@ import PageSpinner from "../UI/PageSpinner";
 export default function BookablesView () {
   const {data: bookables = [], status, error} = useQuery(
     "bookables",
-    () => getData("http://localhost:3001/bookables")
+    () => getData("http://localhost:3009/bookables")
   );
 
   const {id} = useParams();
